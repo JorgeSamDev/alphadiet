@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="navy_dark">#0D1B4B</color>
+    <color name="navy_medium">#1A2B6B</color>
+    <color name="navy_bajo">#1E041D7A</color>
+    <color name="input_bg">#C5CAFF</color>
+    <color name="overlay">#66000000</color>
+</resources>

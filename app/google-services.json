@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "246891414284",
+    "project_id": "alphadiet-f1fac",
+    "storage_bucket": "alphadiet-f1fac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246891414284:android:1ce845f1146c2999107f29",
+        "android_client_info": {
+          "package_name": "com.example.alphadiet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEFqgncFosLQO8WzXAfByx0AqaT7adClQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

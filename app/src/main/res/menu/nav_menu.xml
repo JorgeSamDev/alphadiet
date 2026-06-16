@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Inicio" />
+
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="Perfil" />
+
+        <item
+            android:id="@+id/nav_configuracion"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Configuración" />
+
+        <item
+            android:id="@+id/nav_nosotros"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Nosotros" />
+
+        <item
+            android:id="@+id/nav_compartir"
+            android:icon="@android:drawable/ic_menu_share"
+            android:title="Compartir" />
+
+        <item
+            android:id="@+id/nav_sitio_web"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Sitio Web" />
+
+    </group>
+
+</menu>
