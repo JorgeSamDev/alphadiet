@@ -1,10 +1,10 @@
 package com.example.alphadiet;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private Button btnYaTengoCuenta;
     private Button btnRegistrarme;
-    private Button btnGoogle;
-    private Button btnInstagram;
-    private Button btnFacebook;
+    private ImageButton btnGoogle;
+    private ImageButton btnInstagram;
+    private ImageButton btnFacebook;
     private TextView tvTerminos;
     private TextView tvPrivacidad;
 
@@ -29,7 +29,6 @@ public class WelcomeActivity extends AppCompatActivity {
         setupListeners();
     }
 
-    @SuppressLint("WrongViewCast")
     private void initViews() {
         btnYaTengoCuenta = findViewById(R.id.btn_ya_tengo_cuenta);
         btnRegistrarme   = findViewById(R.id.btn_registrarme);

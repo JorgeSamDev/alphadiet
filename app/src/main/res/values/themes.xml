@@ -1,9 +1,16 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Alphadiet" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Alphadiet" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/navy_dark</item>
+        <item name="colorPrimaryVariant">@color/navy_medium</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorAccent">@color/blue_accent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/navy_dark</item>
+        <item name="android:navigationBarColor">@color/navy_dark</item>
     </style>
 
-    <style name="Theme.Alphadiet" parent="Base.Theme.Alphadiet" />
+    <style name="Theme.Alphadiet.Welcome" parent="Theme.Alphadiet">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>
