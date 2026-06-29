@@ -33,6 +33,11 @@
             android:icon="@android:drawable/ic_menu_myplaces"
             android:title="Sitio Web" />
 
+        <item
+            android:id="@+id/nav_admin"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Admin" />
+
     </group>
 
 </menu>

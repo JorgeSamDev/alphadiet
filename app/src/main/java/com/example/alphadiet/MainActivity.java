@@ -14,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,11 +32,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         init();
         setupBottomNav();
-        // Respetar espacio de status bar y cámara
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         );
-        android.view.WindowManager.LayoutParams params = getWindow().getAttributes();
         getWindow().setStatusBarColor(getResources().getColor(R.color.navy_dark));
     }
 
@@ -61,6 +61,15 @@ public class MainActivity extends AppCompatActivity
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
+
+        // Mostrar Admin solo si es el correo admin
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null && user.getEmail() != null
+                && user.getEmail().equals("jorgesam2302@gmail.com")) {
+            navigationView.getMenu().findItem(R.id.nav_admin).setVisible(true);
+        } else {
+            navigationView.getMenu().findItem(R.id.nav_admin).setVisible(false);
+        }
     }
 
     private void setupBottomNav() {
@@ -97,11 +106,14 @@ public class MainActivity extends AppCompatActivity
             compartirApp();
         } else if (itemId == R.id.nav_sitio_web) {
             abrirSitioWeb();
+        } else if (itemId == R.id.nav_admin) {
+            startActivity(new Intent(MainActivity.this, AdminActivity.class));
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -111,11 +123,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
-            // TODO: abrir búsqueda
             android.widget.Toast.makeText(this, "Buscar...", android.widget.Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void compartirApp() {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

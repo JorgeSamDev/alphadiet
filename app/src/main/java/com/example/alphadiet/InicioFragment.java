@@ -1,15 +1,26 @@
 package com.example.alphadiet;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InicioFragment extends Fragment {
+
+    private FirebaseFirestore db;
+    private LinearLayout layoutProductos;
+    private List<Producto> listaProductos = new ArrayList<>();
 
     @Nullable
     @Override
@@ -18,23 +29,54 @@ public class InicioFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
 
-        // Conectar cards con DetalleProductoActivity
-        View card1 = view.findViewById(R.id.card_producto_1);
-        View card2 = view.findViewById(R.id.card_producto_2);
-        View card3 = view.findViewById(R.id.card_producto_3);
+        db = FirebaseFirestore.getInstance();
+        layoutProductos = view.findViewById(R.id.layout_productos);
 
-        View.OnClickListener irADetalle = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DetalleProductoActivity.class);
-                startActivity(intent);
-            }
-        };
-
-        if (card1 != null) card1.setOnClickListener(irADetalle);
-        if (card2 != null) card2.setOnClickListener(irADetalle);
-        if (card3 != null) card3.setOnClickListener(irADetalle);
+        cargarProductos();
 
         return view;
+    }
+
+    private void cargarProductos() {
+        db.collection("productos")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    listaProductos.clear();
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        Producto p = doc.toObject(Producto.class);
+                        p.setId(doc.getId());
+                        listaProductos.add(p);
+                    }
+                    mostrarProductos();
+                })
+                .addOnFailureListener(e -> {
+                    // Error al cargar
+                });
+    }
+
+    private void mostrarProductos() {
+        if (layoutProductos == null || getContext() == null) return;
+        layoutProductos.removeAllViews();
+
+        for (Producto producto : listaProductos) {
+            View cardView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.item_producto, layoutProductos, false);
+
+            TextView tvNombre = cardView.findViewById(R.id.tv_nombre);
+            TextView tvPrecio = cardView.findViewById(R.id.tv_precio);
+            TextView tvCategoria = cardView.findViewById(R.id.tv_categoria);
+            ImageView ivImagen = cardView.findViewById(R.id.iv_imagen);
+
+            tvNombre.setText(producto.getNombre());
+            tvPrecio.setText("$" + producto.getPrecio());
+            tvCategoria.setText(producto.getCategoria());
+
+            Glide.with(getContext())
+                    .load(producto.getImagen())
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .into(ivImagen);
+
+            layoutProductos.addView(cardView);
+        }
     }
 }
