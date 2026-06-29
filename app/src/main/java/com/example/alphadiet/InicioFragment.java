@@ -1,5 +1,6 @@
 package com.example.alphadiet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InicioFragment extends Fragment {
 
@@ -47,36 +50,82 @@ public class InicioFragment extends Fragment {
                         p.setId(doc.getId());
                         listaProductos.add(p);
                     }
-                    mostrarProductos();
+                    mostrarPorCategoria();
                 })
                 .addOnFailureListener(e -> {
-                    // Error al cargar
                 });
     }
 
-    private void mostrarProductos() {
+    private void mostrarPorCategoria() {
         if (layoutProductos == null || getContext() == null) return;
         layoutProductos.removeAllViews();
 
-        for (Producto producto : listaProductos) {
-            View cardView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.item_producto, layoutProductos, false);
+        // Agrupar por categoría
+        Map<String, List<Producto>> porCategoria = new HashMap<>();
+        for (Producto p : listaProductos) {
+            String cat = p.getCategoria();
+            if (!porCategoria.containsKey(cat)) {
+                porCategoria.put(cat, new ArrayList<>());
+            }
+            porCategoria.get(cat).add(p);
+        }
 
-            TextView tvNombre = cardView.findViewById(R.id.tv_nombre);
-            TextView tvPrecio = cardView.findViewById(R.id.tv_precio);
-            TextView tvCategoria = cardView.findViewById(R.id.tv_categoria);
-            ImageView ivImagen = cardView.findViewById(R.id.iv_imagen);
+        // Mostrar cada categoría
+        for (Map.Entry<String, List<Producto>> entry : porCategoria.entrySet()) {
+            // Título de categoría
+            TextView tvCategoria = new TextView(getContext());
+            tvCategoria.setText(entry.getKey() + " >");
+            tvCategoria.setTextSize(16);
+            tvCategoria.setTextColor(0xFF0D1B4B);
+            tvCategoria.setTypeface(null, android.graphics.Typeface.BOLD);
+            LinearLayout.LayoutParams paramsTitle = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            paramsTitle.setMargins(0, 24, 0, 12);
+            tvCategoria.setLayoutParams(paramsTitle);
+            layoutProductos.addView(tvCategoria);
 
-            tvNombre.setText(producto.getNombre());
-            tvPrecio.setText("$" + producto.getPrecio());
-            tvCategoria.setText(producto.getCategoria());
+            // Productos de esta categoría en fila de 3
+            LinearLayout fila = null;
+            int count = 0;
+            for (Producto producto : entry.getValue()) {
+                if (count % 4 == 0) {
+                    fila = new LinearLayout(getContext());
+                    fila.setOrientation(LinearLayout.HORIZONTAL);
+                    LinearLayout.LayoutParams paramsFila = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    paramsFila.setMargins(0, 0, 0, 8);
+                    fila.setLayoutParams(paramsFila);
+                    layoutProductos.addView(fila);
+                }
 
-            Glide.with(getContext())
-                    .load(producto.getImagen())
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .into(ivImagen);
+                View cardView = LayoutInflater.from(getContext())
+                        .inflate(R.layout.item_producto_grid, fila, false);
 
-            layoutProductos.addView(cardView);
+                TextView tvNombre = cardView.findViewById(R.id.tv_nombre);
+                TextView tvPrecio = cardView.findViewById(R.id.tv_precio);
+                ImageView ivImagen = cardView.findViewById(R.id.iv_imagen);
+
+                tvNombre.setText(producto.getNombre());
+                tvPrecio.setText("$" + producto.getPrecio());
+
+                Glide.with(getContext())
+                        .load(producto.getImagen())
+                        .placeholder(android.R.drawable.ic_menu_gallery)
+                        .into(ivImagen);
+
+                final Producto productoFinal = producto;
+                cardView.setOnClickListener(v -> {
+                    Intent intent = new Intent(getActivity(), DetalleProductoActivity.class);
+                    startActivity(intent);
+                });
+
+                fila.addView(cardView);
+                count++;
+            }
         }
     }
 }

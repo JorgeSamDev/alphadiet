@@ -58,7 +58,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         btnCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DetalleProductoActivity.this, "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
+                agregarAlCarrito();
             }
         });
 
@@ -68,6 +68,38 @@ public class DetalleProductoActivity extends AppCompatActivity {
                 Toast.makeText(DetalleProductoActivity.this, "Procesando pago...", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void agregarAlCarrito() {
+        com.google.firebase.auth.FirebaseUser user =
+                com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user == null) {
+            Toast.makeText(this, "Debes iniciar sesión", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        com.google.firebase.firestore.FirebaseFirestore db =
+                com.google.firebase.firestore.FirebaseFirestore.getInstance();
+
+        java.util.Map<String, Object> item = new java.util.HashMap<>();
+        item.put("nombre", "Creatina Birtman 450g");
+        item.put("precio", 550.24);
+        item.put("cantidad", 1);
+        item.put("imagen", "");
+        item.put("usuarioId", user.getUid());
+
+        db.collection("carritos")
+                .document(user.getUid())
+                .collection("items")
+                .add(item)
+                .addOnSuccessListener(ref ->
+                        Toast.makeText(DetalleProductoActivity.this,
+                                "Agregado al carrito", Toast.LENGTH_SHORT).show()
+                )
+                .addOnFailureListener(e ->
+                        Toast.makeText(DetalleProductoActivity.this,
+                                "Error al agregar", Toast.LENGTH_SHORT).show()
+                );
     }
 
     @Override

@@ -32,9 +32,6 @@ public class Producto {
     public double getPrecio() { return precio; }
     public void setPrecio(double precio) { this.precio = precio; }
 
-    public double getDescuento() { return descuento; }
-    public void setD
-
     public String getCategoria() { return categoria; }
     public void setCategoria(String categoria) { this.categoria = categoria; }
 
