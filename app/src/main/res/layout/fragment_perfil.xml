@@ -3,280 +3,505 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEF0F8">
+    android:background="#F5F6FA"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header con foto y nombre -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/navy_dark"
+            android:background="@drawable/bg_button_navy_dark"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="32dp">
-
-            <!-- Avatar con iniciales -->
-            <TextView
-                android:id="@+id/tv_avatar"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:text="J"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                android:textColor="@color/navy_dark"
-                android:background="@drawable/bg_avatar"
-                android:gravity="center"
-                android:layout_marginBottom="12dp" />
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="36dp">
 
             <TextView
-                android:id="@+id/tv_nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jorge Salgado"
-                android:textSize="20sp"
+                android:text="MI PERFIL"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="4dp" />
+                android:letterSpacing="0.08"
+                android:textColor="#8C9AFF"
+                android:layout_marginBottom="14dp" />
 
-            <TextView
-                android:id="@+id/tv_correo"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="jorgesam@gmail.com"
-                android:textSize="13sp"
-                android:textColor="#A0AEFF" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jorge Salgado"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:id="@+id/tv_correo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="jorgesam2302@gmail.com"
+                        android:textSize="13sp"
+                        android:textColor="#A0AEFF" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <FrameLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp">
+
+                    <TextView
+                        android:id="@+id/tv_avatar"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:text="J"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/navy_dark"
+                        android:background="@drawable/bg_avatar"
+                        android:gravity="center" />
+
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="bottom|end"
+                        android:background="@drawable/bg_online_dot" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_stat_box"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pedidos"
+                        android:textSize="12sp"
+                        android:textColor="#A0AEFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_stat_box"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Favoritos"
+                        android:textSize="12sp"
+                        android:textColor="#A0AEFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_stat_box"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reseñas"
+                        android:textSize="12sp"
+                        android:textColor="#A0AEFF" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <!-- Estadísticas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="-28dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_card_form"
+            android:elevation="6dp"
             android:orientation="horizontal"
-            android:background="#FFFFFF"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp">
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp">
 
             <LinearLayout
+                android:id="@+id/btn_pedidos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_cart_nav" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:text="Pedidos"
-                    android:textSize="12sp"
-                    android:textColor="#6B7DB3" />
+                    android:textColor="@color/navy_dark"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#EEF0F8" />
-
             <LinearLayout
+                android:id="@+id/btn_favoritos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_favorite_nav" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:text="Favoritos"
-                    android:textSize="12sp"
-                    android:textColor="#6B7DB3" />
+                    android:textColor="@color/navy_dark"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#EEF0F8" />
-
             <LinearLayout
+                android:id="@+id/btn_direccion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_home_nav" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
+                    android:layout_marginTop="6dp"
+                    android:text="Dirección"
+                    android:textColor="@color/navy_dark"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_avisos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_notifications_nav" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reseñas"
-                    android:textSize="12sp"
-                    android:textColor="#6B7DB3" />
+                    android:layout_marginTop="6dp"
+                    android:text="Avisos"
+                    android:textColor="@color/navy_dark"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Opciones -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:background="@drawable/bg_card_border"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
 
-            <!-- Editar perfil -->
             <LinearLayout
                 android:id="@+id/btn_editar_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
-                android:padding="16dp"
-                android:layout_marginBottom="10dp">
+                android:padding="14dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="9dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:src="@drawable/ic_person_nav"
                     android:layout_marginEnd="14dp" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Editar perfil"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Editar perfil"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/navy_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre y datos personales"
+                        android:textSize="12sp"
+                        android:textColor="#8B94B8" />
+
+                </LinearLayout>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_media_next" />
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@android:drawable/ic_media_next"
+                    android:tint="#C3C9E0" />
 
             </LinearLayout>
 
-            <!-- Mis compras -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:background="#EEF0F8" />
+
             <LinearLayout
                 android:id="@+id/btn_mis_compras"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
-                android:padding="16dp"
-                android:layout_marginBottom="10dp">
+                android:padding="14dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_agenda"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="9dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:src="@drawable/ic_cart_nav"
                     android:layout_marginEnd="14dp" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Mis compras"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mis compras"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/navy_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Historial de pedidos"
+                        android:textSize="12sp"
+                        android:textColor="#8B94B8" />
+
+                </LinearLayout>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_media_next" />
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@android:drawable/ic_media_next"
+                    android:tint="#C3C9E0" />
 
             </LinearLayout>
 
-            <!-- Notificaciones -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:background="#EEF0F8" />
             <LinearLayout
-                android:id="@+id/btn_notificaciones"
+                android:id="@+id/btn_seguridad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
-                android:padding="16dp"
-                android:layout_marginBottom="10dp">
+                android:padding="14dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_info_details"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="9dp"
+                    android:background="@drawable/bg_social_circle"
+                    android:src="@drawable/ic_info"
                     android:layout_marginEnd="14dp" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Notificaciones"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Seguridad"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/navy_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contraseña y privacidad"
+                        android:textSize="12sp"
+                        android:textColor="#8B94B8" />
+
+                </LinearLayout>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_media_next" />
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@android:drawable/ic_media_next"
+                    android:tint="#C3C9E0" />
 
             </LinearLayout>
 
-            <!-- Cerrar sesión -->
-            <LinearLayout
-                android:id="@+id/btn_cerrar_sesion"
-                android:layout_width="match_parent"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_cerrar_sesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#FDECEC"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="#E53935"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
-                android:padding="16dp">
+                android:layout_weight="1"
+                android:text="Cerrar sesión"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#E53935" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
-                    android:layout_marginEnd="14dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cerrar sesión"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#E53935" />
-
-            </LinearLayout>
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@android:drawable/ic_media_next"
+                android:tint="#E53935" />
 
         </LinearLayout>
 
