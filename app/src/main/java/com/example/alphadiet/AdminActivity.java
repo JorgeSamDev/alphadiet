@@ -27,7 +27,6 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        // Toolbar
         Toolbar toolbar = new Toolbar(this);
         toolbar.setTitle("Admin");
         setSupportActionBar(toolbar);
