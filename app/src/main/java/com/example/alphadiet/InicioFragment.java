@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,40 +71,37 @@ public class InicioFragment extends Fragment {
             porCategoria.get(cat).add(p);
         }
 
-        // Mostrar cada categoría
+        // Mostrar cada categoría como fila horizontal deslizable
         for (Map.Entry<String, List<Producto>> entry : porCategoria.entrySet()) {
+
             // Título de categoría
             TextView tvCategoria = new TextView(getContext());
-            tvCategoria.setText(entry.getKey() + " >");
-            tvCategoria.setTextSize(16);
-            tvCategoria.setTextColor(0xFF0D1B4B);
+            tvCategoria.setText(entry.getKey());
+            tvCategoria.setTextSize(18);
+            tvCategoria.setTextColor(0xFFFFFFFF);
             tvCategoria.setTypeface(null, android.graphics.Typeface.BOLD);
             LinearLayout.LayoutParams paramsTitle = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            paramsTitle.setMargins(0, 24, 0, 12);
+            paramsTitle.setMargins(0, 28, 0, 12);
             tvCategoria.setLayoutParams(paramsTitle);
             layoutProductos.addView(tvCategoria);
 
-            // Productos de esta categoría en fila de 3
-            LinearLayout fila = null;
-            int count = 0;
-            for (Producto producto : entry.getValue()) {
-                if (count % 4 == 0) {
-                    fila = new LinearLayout(getContext());
-                    fila.setOrientation(LinearLayout.HORIZONTAL);
-                    LinearLayout.LayoutParams paramsFila = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                    );
-                    paramsFila.setMargins(0, 0, 0, 8);
-                    fila.setLayoutParams(paramsFila);
-                    layoutProductos.addView(fila);
-                }
+            // Scroll horizontal con las cards de esta categoría
+            HorizontalScrollView scroll = new HorizontalScrollView(getContext());
+            scroll.setHorizontalScrollBarEnabled(false);
+            scroll.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
 
+            LinearLayout filaProductos = new LinearLayout(getContext());
+            filaProductos.setOrientation(LinearLayout.HORIZONTAL);
+
+            for (Producto producto : entry.getValue()) {
                 View cardView = LayoutInflater.from(getContext())
-                        .inflate(R.layout.item_producto_grid, fila, false);
+                        .inflate(R.layout.item_producto_grid, filaProductos, false);
 
                 TextView tvNombre = cardView.findViewById(R.id.tv_nombre);
                 TextView tvPrecio = cardView.findViewById(R.id.tv_precio);
@@ -117,15 +115,23 @@ public class InicioFragment extends Fragment {
                         .placeholder(android.R.drawable.ic_menu_gallery)
                         .into(ivImagen);
 
+                LinearLayout.LayoutParams cardParams =
+                        (LinearLayout.LayoutParams) cardView.getLayoutParams();
+                cardParams.setMarginEnd(12);
+                cardView.setLayoutParams(cardParams);
+
                 final Producto productoFinal = producto;
                 cardView.setOnClickListener(v -> {
                     Intent intent = new Intent(getActivity(), DetalleProductoActivity.class);
+                    intent.putExtra("producto_id", productoFinal.getId());
                     startActivity(intent);
                 });
 
-                fila.addView(cardView);
-                count++;
+                filaProductos.addView(cardView);
             }
+
+            scroll.addView(filaProductos);
+            layoutProductos.addView(scroll);
         }
     }
 }

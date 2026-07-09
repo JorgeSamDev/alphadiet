@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categorias_producto">
+        <item>Selecciona una categoría</item>
+        <item>Proteínas</item>
+        <item>Creatinas</item>
+        <item>BCAA</item>
+        <item>Vitaminas</item>
+        <item>Aminoácidos</item>
+        <item>Pre-entreno</item>
+        <item>Otros</item>
+    </string-array>
+</resources>

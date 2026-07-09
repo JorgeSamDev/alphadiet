@@ -63,11 +63,11 @@ public class CarritoFragment extends Fragment {
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         String nombre  = doc.getString("nombre");
                         double precio  = doc.getDouble("precio");
-                        long cantidad  = doc.getLong("cantidad");
+                        long cantidadLong = doc.getLong("cantidad");
                         String imagen  = doc.getString("imagen");
                         String itemId  = doc.getId();
 
-                        total += precio * cantidad;
+                        total += precio * cantidadLong;
 
                         View itemView = LayoutInflater.from(getContext())
                                 .inflate(R.layout.item_carrito, layoutCarrito, false);
@@ -81,8 +81,8 @@ public class CarritoFragment extends Fragment {
                         ImageButton btnEliminar = itemView.findViewById(R.id.btn_eliminar);
 
                         tvNombre.setText(nombre);
-                        tvPrecio.setText("$" + precio);
-                        tvCantidad.setText(String.valueOf(cantidad));
+                        tvPrecio.setText(String.format("$%.2f", precio));
+                        tvCantidad.setText(String.valueOf(cantidadLong));
 
                         if (imagen != null && !imagen.isEmpty()) {
                             Glide.with(getContext())
@@ -90,6 +90,29 @@ public class CarritoFragment extends Fragment {
                                     .placeholder(android.R.drawable.ic_menu_gallery)
                                     .into(ivImagen);
                         }
+
+                        // Contenedor mutable para poder modificar la cantidad desde los listeners
+                        final long[] cantidadActual = { cantidadLong };
+                        final double precioUnitario = precio;
+
+                        btnMenos.setOnClickListener(v -> {
+                            if (cantidadActual[0] <= 1) {
+                                Toast.makeText(getContext(),
+                                        "La cantidad mínima es 1", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            cantidadActual[0]--;
+                            actualizarCantidadEnFirestore(user.getUid(), itemId, cantidadActual[0]);
+                            tvCantidad.setText(String.valueOf(cantidadActual[0]));
+                            recalcularTotalLocal();
+                        });
+
+                        btnMas.setOnClickListener(v -> {
+                            cantidadActual[0]++;
+                            actualizarCantidadEnFirestore(user.getUid(), itemId, cantidadActual[0]);
+                            tvCantidad.setText(String.valueOf(cantidadActual[0]));
+                            recalcularTotalLocal();
+                        });
 
                         btnEliminar.setOnClickListener(v -> {
                             db.collection("carritos")
@@ -107,7 +130,35 @@ public class CarritoFragment extends Fragment {
                         layoutCarrito.addView(itemView);
                     }
 
-                    tvTotal.setText("$" + String.format("%.2f", total));
+                    tvTotal.setText(String.format("$%.2f", total));
                 });
+    }
+
+    private void actualizarCantidadEnFirestore(String uid, String itemId, long nuevaCantidad) {
+        db.collection("carritos")
+                .document(uid)
+                .collection("items")
+                .document(itemId)
+                .update("cantidad", nuevaCantidad)
+                .addOnFailureListener(e ->
+                        Toast.makeText(getContext(), "Error al actualizar cantidad", Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    private void recalcularTotalLocal() {
+        // Recalcula sumando lo que hay actualmente en pantalla, sin re-consultar Firestore
+        total = 0;
+        for (int i = 0; i < layoutCarrito.getChildCount(); i++) {
+            View itemView = layoutCarrito.getChildAt(i);
+            TextView tvPrecio = itemView.findViewById(R.id.tv_precio);
+            TextView tvCantidad = itemView.findViewById(R.id.tv_cantidad);
+            if (tvPrecio == null || tvCantidad == null) continue;
+
+            String precioTexto = tvPrecio.getText().toString().replace("$", "");
+            double precio = Double.parseDouble(precioTexto);
+            int cantidad = Integer.parseInt(tvCantidad.getText().toString());
+            total += precio * cantidad;
+        }
+        tvTotal.setText(String.format("$%.2f", total));
     }
 }

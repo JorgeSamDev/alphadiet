@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#EEF0F8">
+    android:background="#0B0F1E">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -16,21 +16,40 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notificaciones"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
             <!-- Notificación 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
+                android:background="@drawable/bg_card_detail"
                 android:padding="14dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:layout_marginEnd="12dp" />
+                <FrameLayout
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_stepper_circle"
+                    android:layout_marginEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_dialog_info"
+                        app:tint="#4C6FFF"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -44,14 +63,14 @@
                         android:text="Pedido confirmado"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
+                        android:textColor="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tu pedido ha sido confirmado exitosamente."
                         android:textSize="12sp"
-                        android:textColor="#6B7DB3"
+                        android:textColor="#8A93B8"
                         android:layout_marginTop="2dp" />
 
                     <TextView
@@ -59,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hace 5 min"
                         android:textSize="11sp"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#5A6488"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
@@ -72,15 +91,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
+                android:background="@drawable/bg_card_detail"
                 android:padding="14dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:layout_marginEnd="12dp" />
+                <FrameLayout
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_stepper_circle"
+                    android:layout_marginEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_dialog_info"
+                        app:tint="#4CD97B"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -94,14 +123,14 @@
                         android:text="Pago aprobado"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
+                        android:textColor="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tu pago fue procesado exitosamente."
                         android:textSize="12sp"
-                        android:textColor="#6B7DB3"
+                        android:textColor="#8A93B8"
                         android:layout_marginTop="2dp" />
 
                     <TextView
@@ -109,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hace 1 hora"
                         android:textSize="11sp"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#5A6488"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
@@ -122,15 +151,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
+                android:background="@drawable/bg_card_detail"
                 android:padding="14dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:layout_marginEnd="12dp" />
+                <FrameLayout
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_stepper_circle"
+                    android:layout_marginEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_dialog_info"
+                        app:tint="#FF6FD8"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -144,14 +183,14 @@
                         android:text="¡Oferta especial!"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
+                        android:textColor="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20% de descuento en proteínas este fin de semana."
                         android:textSize="12sp"
-                        android:textColor="#6B7DB3"
+                        android:textColor="#8A93B8"
                         android:layout_marginTop="2dp" />
 
                     <TextView
@@ -159,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hace 2 horas"
                         android:textSize="11sp"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#5A6488"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
@@ -172,15 +211,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
+                android:background="@drawable/bg_card_detail"
                 android:padding="14dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:layout_marginEnd="12dp" />
+                <FrameLayout
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_stepper_circle"
+                    android:layout_marginEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_dialog_info"
+                        app:tint="#FFA84C"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -194,14 +243,14 @@
                         android:text="Envío en camino"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
+                        android:textColor="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tu pedido está en camino, llegará hoy."
                         android:textSize="12sp"
-                        android:textColor="#6B7DB3"
+                        android:textColor="#8A93B8"
                         android:layout_marginTop="2dp" />
 
                     <TextView
@@ -209,7 +258,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hace 3 horas"
                         android:textSize="11sp"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#5A6488"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
@@ -222,15 +271,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_card_border"
+                android:background="@drawable/bg_card_detail"
                 android:padding="14dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/ic_dialog_info"
-                    android:layout_marginEnd="12dp" />
+                <FrameLayout
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_stepper_circle"
+                    android:layout_marginEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_dialog_info"
+                        app:tint="#4C6FFF"
+                        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -244,14 +303,14 @@
                         android:text="Cuenta verificada"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
+                        android:textColor="#FFFFFF" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tu cuenta ha sido verificada exitosamente."
                         android:textSize="12sp"
-                        android:textColor="#6B7DB3"
+                        android:textColor="#8A93B8"
                         android:layout_marginTop="2dp" />
 
                     <TextView
@@ -259,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:text="Ayer"
                         android:textSize="11sp"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#5A6488"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>

@@ -6,16 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="#EEF0F8">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_detalle"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/navy_dark"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="AlphaDiet" />
+    android:background="#0B0F1E">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -26,167 +17,332 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Imagen con botones flotantes -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:background="#C5CAFF">
+                android:layout_height="300dp">
 
                 <ImageView
                     android:id="@+id/img_producto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerInside"
-                    android:padding="24dp"
+                    android:scaleType="centerCrop"
+                    android:background="#131B3A"
                     android:src="@android:drawable/ic_menu_gallery" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-70%"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/bg_badge_discount"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:layout_gravity="top|start"
-                    android:layout_margin="12dp" />
+                    android:layout_margin="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_circle_button"
+                    android:src="@drawable/ic_arrow_back"
+                    android:padding="10dp"
+                    android:contentDescription="Volver" />
 
                 <ImageButton
                     android:id="@+id/btn_favorito"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:layout_gravity="top|end"
-                    android:layout_margin="12dp"
+                    android:layout_margin="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_circle_button"
                     android:src="@drawable/ic_favorite_nav"
-                    android:background="@android:color/transparent"
+                    android:padding="10dp"
                     android:contentDescription="Favorito" />
 
             </FrameLayout>
 
+            <!-- Contenido -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp"
-                android:background="#EEF0F8">
+                android:background="#0B0F1E">
 
                 <TextView
+                    android:id="@+id/tv_categoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Creatinas"
+                    android:text="Categoría"
                     android:textSize="12sp"
-                    android:textColor="#6B7DB3"
+                    android:textColor="#4C6FFF"
                     android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
+                    android:layout_marginBottom="6dp" />
 
                 <TextView
                     android:id="@+id/tv_nombre_producto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Creatina Birtman 450g"
+                    android:text="Nombre del producto"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="@color/navy_dark"
+                    android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
 
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@android:drawable/btn_star_big_on" />
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@android:drawable/btn_star_big_on" />
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@android:drawable/btn_star_big_on" />
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@android:drawable/btn_star_big_on" />
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@android:drawable/btn_star_big_off" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_off" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="  4.0 (128 reseñas)"
+                        android:layout_marginStart="6dp"
+                        android:text="4.0 (128 reseñas)"
                         android:textSize="12sp"
-                        android:textColor="#6B7DB3" />
+                        android:textColor="#8A93B8" />
 
                 </LinearLayout>
 
-                <View
+                <!-- Descripción -->
+                <TextView
+                    android:id="@+id/tv_descripcion"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#3D5A99"
-                    android:alpha="0.2"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_height="wrap_content"
+                    android:text="Descripción del producto..."
+                    android:textSize="13sp"
+                    android:textColor="#8A93B8"
+                    android:lineSpacingMultiplier="1.4"
+                    android:layout_marginBottom="24dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Valores nutricionales por scoop"
+                    android:textSize="12sp"
+                    android:textColor="#8A93B8"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
+                <!-- Anillos de macros -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp">
+                    android:weightSum="4"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_card_detail"
+                    android:layout_marginBottom="20dp">
 
+                    <!-- Calorías -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <FrameLayout android:layout_width="56dp" android:layout_height="56dp">
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:indeterminate="false"
+                                app:indicatorSize="56dp"
+                                app:trackThickness="5dp"
+                                app:trackColor="#1E294D"
+                                app:indicatorColor="#4CD97B"
+                                app:trackCornerRadius="8dp"
+                                app:indicatorInset="0dp" />
+                            <TextView
+                                android:id="@+id/tv_calorias"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$666.24"
-                            android:textSize="14sp"
-                            android:textColor="#AAAAAA" />
+                            android:layout_marginTop="6dp"
+                            android:text="Kcal"
+                            android:textColor="#8A93B8"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <!-- Carbohidratos -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <FrameLayout android:layout_width="56dp" android:layout_height="56dp">
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:indeterminate="false"
+                                app:indicatorSize="56dp"
+                                app:trackThickness="5dp"
+                                app:trackColor="#1E294D"
+                                app:indicatorColor="#FFA84C"
+                                app:trackCornerRadius="8dp"
+                                app:indicatorInset="0dp" />
+                            <TextView
+                                android:id="@+id/tv_carbohidratos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="0g"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
 
                         <TextView
-                            android:id="@+id/tv_precio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$550.24"
-                            android:textSize="26sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy_dark" />
+                            android:layout_marginTop="6dp"
+                            android:text="Carb"
+                            android:textColor="#8A93B8"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <!-- Proteína -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <FrameLayout android:layout_width="56dp" android:layout_height="56dp">
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:indeterminate="false"
+                                app:indicatorSize="56dp"
+                                app:trackThickness="5dp"
+                                app:trackColor="#1E294D"
+                                app:indicatorColor="#4C6FFF"
+                                app:trackCornerRadius="8dp"
+                                app:indicatorInset="0dp" />
+                            <TextView
+                                android:id="@+id/tv_proteina"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="0g"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Prot"
+                            android:textColor="#8A93B8"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <!-- Grasas -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <FrameLayout android:layout_width="56dp" android:layout_height="56dp">
+                            <com.google.android.material.progressindicator.CircularProgressIndicator
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:indeterminate="false"
+                                app:indicatorSize="56dp"
+                                app:trackThickness="5dp"
+                                app:trackColor="#1E294D"
+                                app:indicatorColor="#FF6FD8"
+                                app:trackCornerRadius="8dp"
+                                app:indicatorInset="0dp" />
+                            <TextView
+                                android:id="@+id/tv_grasas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="0g"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Grasa"
+                            android:textColor="#8A93B8"
+                            android:textSize="11sp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- Descripción -->
+                <!-- Precio + stepper -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card_border"
-                    android:padding="14dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="20dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_precio"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Energía y fuerza máximas para tus entrenamientos intensos y resultados rápidos."
-                        android:textSize="13sp"
-                        android:textColor="#6B7DB3"
-                        android:lineSpacingMultiplier="1.4" />
+                        android:layout_weight="1"
+                        android:text="$0.00"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <ImageButton
+                        android:id="@+id/btn_menos"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_stepper_circle"
+                        android:src="@android:drawable/ic_media_previous"
+                        android:padding="10dp"
+                        android:contentDescription="Menos" />
+
+                    <TextView
+                        android:id="@+id/tv_cantidad"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btn_mas"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_stepper_circle"
+                        android:src="@android:drawable/ic_input_add"
+                        android:padding="8dp"
+                        android:contentDescription="Más" />
 
                 </LinearLayout>
 
@@ -194,19 +350,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btn_carrito"
                         android:layout_width="0dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
-                        android:text="Agregar al carrito"
-                        android:textColor="@color/white"
+                        android:text="Agregar"
+                        android:textColor="#FFFFFF"
                         android:textSize="13sp"
                         android:textStyle="bold"
-                        android:background="@drawable/bg_button_navy_dark"
+                        android:background="@drawable/bg_card_detail"
                         android:backgroundTint="@null"
                         android:layout_marginEnd="8dp" />
 
@@ -216,53 +371,11 @@
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:text="Comprar ahora"
-                        android:textColor="@color/white"
+                        android:textColor="#FFFFFF"
                         android:textSize="13sp"
                         android:textStyle="bold"
                         android:background="@drawable/bg_button_navy"
-                        android:backgroundTint="@null" />
-
-                </LinearLayout>
-
-                <!-- Total -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card_border"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Total a pagar:"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="end">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$666.24"
-                            android:textSize="12sp"
-                            android:textColor="#AAAAAA" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$550.24"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy_dark" />
-
-                    </LinearLayout>
+                        android:backgroundTint="#3D5AFF" />
 
                 </LinearLayout>
 

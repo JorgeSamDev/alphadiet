@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFCFC">
+    android:background="#0B0F1E">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -23,434 +22,59 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="14dp">
+                android:layout_marginBottom="16dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Mis favoritos"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/navy_dark" />
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tv_contador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 productos"
+                    android:textSize="12sp"
+                    android:textColor="#8A93B8" />
+
+            </LinearLayout>
+
+            <!-- Estado vacío -->
+            <LinearLayout
+                android:id="@+id/layout_vacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_favorite_nav"
+                    android:alpha="0.5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 productos"
-                    android:textSize="12sp"
-                    android:textColor="#666666" />
+                    android:layout_marginTop="12dp"
+                    android:text="Aún no tienes favoritos"
+                    android:textColor="#8A93B8"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
-            <!-- Card 1 -->
+            <!-- Lista dinámica -->
             <LinearLayout
+                android:id="@+id/layout_favoritos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_card_border">
-
-                <LinearLayout
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:background="@drawable/bg_card_border"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@android:drawable/ic_menu_gallery" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="14dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Creatina Birtman"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="500g · 90 servicios"
-                        android:textSize="12sp"
-                        android:textColor="#6B7DB3"
-                        android:layout_marginTop="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$550.24"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark"
-                        android:layout_marginTop="8dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_share_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Compartir"
-                        android:layout_marginEnd="12dp" />
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_favorite_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Favorito" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Card 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_card_border">
-
-                <LinearLayout
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:background="@drawable/bg_card_border"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@android:drawable/ic_menu_gallery" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="14dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Proteína WEEY Sandia"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="400g · 30 servicios"
-                        android:textSize="12sp"
-                        android:textColor="#6B7DB3"
-                        android:layout_marginTop="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$500.24"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark"
-                        android:layout_marginTop="8dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_share_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Compartir"
-                        android:layout_marginEnd="12dp" />
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_favorite_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Favorito" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Card 3 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_card_border">
-
-                <LinearLayout
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:background="@drawable/bg_card_border"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@android:drawable/ic_menu_gallery" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="14dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Venom Inferno Sandia"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="400g · 30 servicios"
-                        android:textSize="12sp"
-                        android:textColor="#6B7DB3"
-                        android:layout_marginTop="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$624.24"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark"
-                        android:layout_marginTop="8dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_share_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Compartir"
-                        android:layout_marginEnd="12dp" />
-
-                    <ImageButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_favorite_nav"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="Favorito" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Card 4 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_card_border">
-
-                <LinearLayout
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:background="@drawable/bg_card_border"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@android:drawable/ic_menu_gallery" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="14dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mutant Mass 2000g"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ganador de peso · 20 servicios"
-                        android:textSize="12sp"
-                        android:textColor="#6B7DB3"
-                        android:layout_marginTop="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$550.24"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark"
-                        android:layout_marginTop="8dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_share_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Compartir"
-                        android:layout_marginEnd="12dp" />
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_favorite_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Favorito" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Card 5 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:background="@drawable/bg_card_border">
-
-                <LinearLayout
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:background="@drawable/bg_card_border"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@android:drawable/ic_menu_gallery" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="14dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Creatina Birtman 1000g"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Monoidratada · 180 servicios"
-                        android:textSize="12sp"
-                        android:textColor="#6B7DB3"
-                        android:layout_marginTop="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$550.24"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark"
-                        android:layout_marginTop="8dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_share_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Compartir"
-                        android:layout_marginEnd="12dp" />
-
-                    <ImageButton
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_favorite_nav"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Favorito" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:orientation="vertical" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

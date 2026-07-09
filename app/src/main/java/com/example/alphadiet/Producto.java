@@ -8,6 +8,10 @@ public class Producto {
     private double precio;
     private String categoria;
     private String imagen;
+    private int calorias;
+    private int proteina;
+    private int carbohidratos;
+    private int grasas;
 
     public Producto() {}
 
@@ -37,4 +41,16 @@ public class Producto {
 
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
+
+    public int getCalorias() { return calorias; }
+    public void setCalorias(int calorias) { this.calorias = calorias; }
+
+    public int getProteina() { return proteina; }
+    public void setProteina(int proteina) { this.proteina = proteina; }
+
+    public int getCarbohidratos() { return carbohidratos; }
+    public void setCarbohidratos(int carbohidratos) { this.carbohidratos = carbohidratos; }
+
+    public int getGrasas() { return grasas; }
+    public void setGrasas(int grasas) { this.grasas = grasas; }
 }

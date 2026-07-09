@@ -7,14 +7,14 @@
     android:gravity="center_vertical"
     android:padding="14dp"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/bg_card_border">
+    android:background="@drawable/bg_card_detail">
 
     <ImageView
         android:id="@+id/iv_imagen"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="centerCrop"
-        android:background="#EEF0F8"
+        android:background="#1E294D"
         android:src="@android:drawable/ic_menu_gallery" />
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:text="Nombre"
             android:textSize="13sp"
             android:textStyle="bold"
-            android:textColor="@color/navy_dark"
+            android:textColor="#FFFFFF"
             android:maxLines="2"
             android:ellipsize="end" />
 
@@ -42,7 +42,7 @@
             android:text="$0.00"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="@color/navy_dark"
+            android:textColor="#4C6FFF"
             android:layout_marginTop="4dp" />
 
         <!-- Cantidad -->
@@ -52,9 +52,9 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_input_field"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp">
+            android:background="@drawable/bg_search_bar"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp">
 
             <TextView
                 android:id="@+id/btn_menos"
@@ -63,7 +63,7 @@
                 android:text="−"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/navy_dark"
+                android:textColor="#FFFFFF"
                 android:gravity="center" />
 
             <TextView
@@ -73,7 +73,7 @@
                 android:text="1"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/navy_dark"
+                android:textColor="#FFFFFF"
                 android:gravity="center" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:text="+"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/navy_dark"
+                android:textColor="#FFFFFF"
                 android:gravity="center" />
 
         </LinearLayout>
@@ -97,6 +97,8 @@
         android:layout_height="36dp"
         android:src="@android:drawable/ic_menu_delete"
         android:background="@android:color/transparent"
+        app:tint="#8A93B8"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:contentDescription="Eliminar" />
 
 </LinearLayout>
