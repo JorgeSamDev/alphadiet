@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Imagen con botones flotantes -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp">
@@ -84,6 +83,7 @@
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
 
+                <!-- Rating -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,17 +91,17 @@
                     android:gravity="center_vertical"
                     android:layout_marginBottom="20dp">
 
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_on" />
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/btn_star_big_off" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_star_filled" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginStart="2dp" android:src="@drawable/ic_star_filled" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginStart="2dp" android:src="@drawable/ic_star_filled" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginStart="2dp" android:src="@drawable/ic_star_filled" />
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginStart="2dp" android:src="@drawable/ic_star_empty" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="4.0 (128 reseñas)"
+                        android:text="4.0 (177 reseñas)"
                         android:textSize="12sp"
                         android:textColor="#8A93B8" />
 
@@ -126,6 +126,7 @@
                     android:textColor="#8A93B8"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp" />
+
                 <!-- Anillos de macros -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -321,8 +322,8 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:background="@drawable/bg_stepper_circle"
-                        android:src="@android:drawable/ic_media_previous"
-                        android:padding="10dp"
+                        android:src="@drawable/ic_minus"
+                        android:padding="9dp"
                         android:contentDescription="Menos" />
 
                     <TextView
@@ -340,8 +341,8 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:background="@drawable/bg_stepper_circle"
-                        android:src="@android:drawable/ic_input_add"
-                        android:padding="8dp"
+                        android:src="@drawable/ic_plus"
+                        android:padding="9dp"
                         android:contentDescription="Más" />
 
                 </LinearLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEF0F8">
+    android:background="#0B0F1E">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,6 @@
             android:padding="20dp"
             android:paddingBottom="32dp">
 
-            <!-- Top row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                         android:id="@+id/tv_nombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jorge Salgado"
+                        android:text="Perfil"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="#FFFFFF"
@@ -62,21 +62,18 @@
 
                 </LinearLayout>
 
-                <!-- Avatar -->
+                <!-- Avatar real desde Gravatar -->
                 <FrameLayout
                     android:layout_width="64dp"
                     android:layout_height="64dp">
 
-                    <TextView
-                        android:id="@+id/tv_avatar"
+                    <ImageView
+                        android:id="@+id/iv_avatar"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:text="J"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/navy_dark"
                         android:background="@drawable/bg_avatar"
-                        android:gravity="center" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_nav" />
 
                     <View
                         android:layout_width="16dp"
@@ -106,6 +103,7 @@
                     android:layout_marginEnd="8dp">
 
                     <TextView
+                        android:id="@+id/tv_pedidos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -134,6 +132,7 @@
                     android:layout_marginEnd="8dp">
 
                     <TextView
+                        android:id="@+id/tv_favoritos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -161,6 +160,7 @@
                     android:padding="12dp">
 
                     <TextView
+                        android:id="@+id/tv_resenas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -198,19 +198,20 @@
                 android:layout_marginTop="8dp">
 
                 <LinearLayout
+                    android:id="@+id/acceso_pedidos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="@drawable/bg_stat_card"
+                    android:background="@drawable/bg_card_detail"
                     android:padding="14dp"
                     android:layout_marginEnd="8dp">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_agenda"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_orders_nav"
                         android:layout_marginBottom="6dp" />
 
                     <TextView
@@ -218,23 +219,24 @@
                         android:layout_height="wrap_content"
                         android:text="Pedidos"
                         android:textSize="10sp"
-                        android:textColor="#6B7DB3" />
+                        android:textColor="#8A93B8" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/acceso_favoritos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="@drawable/bg_stat_card"
+                    android:background="@drawable/bg_card_detail"
                     android:padding="14dp"
                     android:layout_marginEnd="8dp">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         android:src="@drawable/ic_favorite_nav"
                         android:layout_marginBottom="6dp" />
 
@@ -243,24 +245,25 @@
                         android:layout_height="wrap_content"
                         android:text="Favoritos"
                         android:textSize="10sp"
-                        android:textColor="#6B7DB3" />
+                        android:textColor="#8A93B8" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/acceso_direccion"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="@drawable/bg_stat_card"
+                    android:background="@drawable/bg_card_detail"
                     android:padding="14dp"
                     android:layout_marginEnd="8dp">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_mylocation"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_location_nav"
                         android:layout_marginBottom="6dp" />
 
                     <TextView
@@ -268,22 +271,23 @@
                         android:layout_height="wrap_content"
                         android:text="Dirección"
                         android:textSize="10sp"
-                        android:textColor="#6B7DB3" />
+                        android:textColor="#8A93B8" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/acceso_avisos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:background="@drawable/bg_stat_card"
+                    android:background="@drawable/bg_card_detail"
                     android:padding="14dp">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         android:src="@drawable/ic_notifications_nav"
                         android:layout_marginBottom="6dp" />
 
@@ -292,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:text="Avisos"
                         android:textSize="10sp"
-                        android:textColor="#6B7DB3" />
+                        android:textColor="#8A93B8" />
 
                 </LinearLayout>
 
@@ -303,7 +307,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bg_stat_card"
+                android:background="@drawable/bg_card_detail"
                 android:layout_marginBottom="12dp">
 
                 <LinearLayout
@@ -317,14 +321,14 @@
                     <LinearLayout
                         android:layout_width="38dp"
                         android:layout_height="38dp"
-                        android:background="@drawable/bg_icon_box"
+                        android:background="@drawable/bg_stepper_circle"
                         android:gravity="center"
                         android:layout_marginEnd="14dp">
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@android:drawable/ic_menu_edit" />
+                            android:src="@drawable/ic_edit_nav" />
 
                     </LinearLayout>
 
@@ -340,25 +344,24 @@
                             android:text="Editar perfil"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="@color/navy_dark" />
+                            android:textColor="#FFFFFF" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nombre y datos personales"
                             android:textSize="11sp"
-                            android:textColor="#6B7DB3"
+                            android:textColor="#8A93B8"
                             android:layout_marginTop="2dp" />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#F0F0F0" />
+                    android:background="#1E294D" />
 
                 <LinearLayout
                     android:id="@+id/btn_mis_compras"
@@ -371,14 +374,14 @@
                     <LinearLayout
                         android:layout_width="38dp"
                         android:layout_height="38dp"
-                        android:background="@drawable/bg_icon_box"
+                        android:background="@drawable/bg_stepper_circle"
                         android:gravity="center"
                         android:layout_marginEnd="14dp">
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@android:drawable/ic_menu_agenda" />
+                            android:src="@drawable/ic_orders_nav" />
 
                     </LinearLayout>
 
@@ -394,25 +397,24 @@
                             android:text="Mis compras"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="@color/navy_dark" />
+                            android:textColor="#FFFFFF" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Historial de pedidos"
                             android:textSize="11sp"
-                            android:textColor="#6B7DB3"
+                            android:textColor="#8A93B8"
                             android:layout_marginTop="2dp" />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#F0F0F0" />
+                    android:background="#1E294D" />
 
                 <LinearLayout
                     android:id="@+id/btn_notificaciones"
@@ -425,7 +427,7 @@
                     <LinearLayout
                         android:layout_width="38dp"
                         android:layout_height="38dp"
-                        android:background="@drawable/bg_icon_box"
+                        android:background="@drawable/bg_stepper_circle"
                         android:gravity="center"
                         android:layout_marginEnd="14dp">
 
@@ -448,18 +450,17 @@
                             android:text="Notificaciones"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="@color/navy_dark" />
+                            android:textColor="#FFFFFF" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Alertas y avisos"
                             android:textSize="11sp"
-                            android:textColor="#6B7DB3"
+                            android:textColor="#8A93B8"
                             android:layout_marginTop="2dp" />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -470,7 +471,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bg_logout_card">
+                android:background="@drawable/bg_card_detail">
 
                 <LinearLayout
                     android:id="@+id/btn_cerrar_sesion"
@@ -483,14 +484,14 @@
                     <LinearLayout
                         android:layout_width="38dp"
                         android:layout_height="38dp"
-                        android:background="@drawable/bg_logout_icon"
+                        android:background="#2A1A2E"
                         android:gravity="center"
                         android:layout_marginEnd="14dp">
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+                            android:src="@drawable/ic_logout_nav" />
 
                     </LinearLayout>
 
@@ -502,7 +503,6 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#E53935" />
-
 
                 </LinearLayout>
 

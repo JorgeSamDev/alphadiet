@@ -1,10 +1,13 @@
 package com.example.alphadiet;
 
 import android.content.Intent;
+import androidx.annotation.Nullable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +15,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,10 +41,18 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         init();
         setupBottomNav();
+        cargarDatosDrawer();
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         );
         getWindow().setStatusBarColor(getResources().getColor(R.color.navy_dark));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Por si el nombre se editó en PerfilFragment, refresca al volver
+        cargarDatosDrawer();
     }
 
     private void init() {
@@ -72,6 +89,50 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void cargarDatosDrawer() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null || navigationView == null) return;
+
+        View headerView = navigationView.getHeaderView(0);
+        if (headerView == null) return;
+
+        TextView tvNombre = headerView.findViewById(R.id.tv_nombre_drawer);
+        ImageView ivAvatar = headerView.findViewById(R.id.iv_avatar_drawer);
+
+        String nombre = user.getDisplayName();
+        tvNombre.setText(nombre != null && !nombre.isEmpty() ? nombre : "Usuario AlphaDiet");
+
+        String avatarUrl = obtenerUrlGravatar(user.getEmail());
+        if (avatarUrl != null) {
+            Glide.with(this)
+                    .load(avatarUrl)
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                    .placeholder(R.drawable.ic_person_nav)
+                    .into(ivAvatar);
+        }
+    }
+
+    @Nullable
+    private String obtenerUrlGravatar(String correo) {
+        if (correo == null || correo.isEmpty()) return null;
+        try {
+            String correoNormalizado = correo.trim().toLowerCase();
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashBytes = md.digest(correoNormalizado.getBytes());
+
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return "https://www.gravatar.com/avatar/" + hexString + "?d=identicon&s=200";
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
+    }
+
     private void setupBottomNav() {
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -96,10 +157,13 @@ public class MainActivity extends AppCompatActivity
 
         if (itemId == R.id.nav_inicio) {
             viewPager.setCurrentItem(0);
+            bottomNav.setSelectedItemId(R.id.nav_inicio);
         } else if (itemId == R.id.nav_perfil) {
-            viewPager.setCurrentItem(1);
+            viewPager.setCurrentItem(4);
+            bottomNav.setSelectedItemId(R.id.nav_perfil);
         } else if (itemId == R.id.nav_configuracion) {
-            viewPager.setCurrentItem(2);
+            // TODO: no existe ConfiguracionFragment en el ViewPager todavía
+            android.widget.Toast.makeText(this, "Próximamente", android.widget.Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.nav_nosotros) {
             // TODO: abrir fragment nosotros
         } else if (itemId == R.id.nav_compartir) {
