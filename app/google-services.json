@@ -12,7 +12,20 @@
           "package_name": "com.example.alphadiet"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "246891414284-r8a9neavgscgvie537e15klgrktbf366.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alphadiet",
+            "certificate_hash": "70436b90b89d0f987bf4ff273f00331971b58ccb"
+          }
+        },
+        {
+          "client_id": "246891414284-v7tvrtd0p0gqamt7fl33bbmehe9tbcki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDEFqgncFosLQO8WzXAfByx0AqaT7adClQ"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246891414284-v7tvrtd0p0gqamt7fl33bbmehe9tbcki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

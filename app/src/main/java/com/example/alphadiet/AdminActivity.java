@@ -1,5 +1,6 @@
 package com.example.alphadiet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,8 +27,13 @@ public class AdminActivity extends AppCompatActivity {
     private EditText etProteina;
     private EditText etCarbohidratos;
     private EditText etGrasas;
+    private EditText etStock;
     private Button btnGuardar;
+    private Button btnVerProductos;
     private FirebaseFirestore db;
+
+    private String productoIdEditando = null;
+    private String[] categorias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +48,16 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         db = FirebaseFirestore.getInstance();
+        categorias = getResources().getStringArray(R.array.categorias_producto);
+
         initViews();
         setupCategoriaSpinner();
         setupListeners();
+
+        productoIdEditando = getIntent().getStringExtra("producto_id");
+        if (productoIdEditando != null) {
+            cargarProductoParaEditar();
+        }
     }
 
     private void initViews() {
@@ -56,7 +70,9 @@ public class AdminActivity extends AppCompatActivity {
         etProteina       = findViewById(R.id.et_proteina);
         etCarbohidratos  = findViewById(R.id.et_carbohidratos);
         etGrasas         = findViewById(R.id.et_grasas);
+        etStock          = findViewById(R.id.et_stock);
         btnGuardar       = findViewById(R.id.btn_guardar);
+        btnVerProductos  = findViewById(R.id.btn_ver_productos);
     }
 
     private void setupCategoriaSpinner() {
@@ -70,17 +86,93 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validarCampos()) {
+        btnGuardar.setOnClickListener(v -> {
+            if (validarCampos()) {
+                if (productoIdEditando != null) {
+                    actualizarProducto();
+                } else {
                     guardarProducto();
                 }
             }
         });
+
+        btnVerProductos.setOnClickListener(v ->
+                startActivity(new Intent(this, ProductosListaActivity.class))
+        );
+    }
+
+    private void cargarProductoParaEditar() {
+        db.collection("productos")
+                .document(productoIdEditando)
+                .get()
+                .addOnSuccessListener(this::precargarCampos)
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error al cargar producto", Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    private void precargarCampos(DocumentSnapshot doc) {
+        if (!doc.exists()) return;
+
+        Producto p = doc.toObject(Producto.class);
+        if (p == null) return;
+
+        etNombre.setText(p.getNombre());
+        etPrecio.setText(String.valueOf(p.getPrecio()));
+        etDescripcion.setText(p.getDescripcion());
+        etImagen.setText(p.getImagen());
+        etCalorias.setText(String.valueOf(p.getCalorias()));
+        etProteina.setText(String.valueOf(p.getProteina()));
+        etCarbohidratos.setText(String.valueOf(p.getCarbohidratos()));
+        etGrasas.setText(String.valueOf(p.getGrasas()));
+        etStock.setText(String.valueOf(p.getStock()));
+
+        for (int i = 0; i < categorias.length; i++) {
+            if (categorias[i].equals(p.getCategoria())) {
+                spinnerCategoria.setSelection(i);
+                break;
+            }
+        }
+
+        btnGuardar.setText("Actualizar Producto");
+        btnVerProductos.setVisibility(View.GONE);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Editar producto");
+        }
     }
 
     private void guardarProducto() {
+        Map<String, Object> producto = construirMapaProducto();
+
+        db.collection("productos")
+                .add(producto)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(AdminActivity.this,
+                            "Producto guardado exitosamente", Toast.LENGTH_SHORT).show();
+                    limpiarCampos();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(AdminActivity.this,
+                                "Error al guardar el producto", Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    private void actualizarProducto() {
+        Map<String, Object> producto = construirMapaProducto();
+
+        db.collection("productos")
+                .document(productoIdEditando)
+                .set(producto)
+                .addOnSuccessListener(unused -> {
+                    Toast.makeText(this, "Producto actualizado", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    private Map<String, Object> construirMapaProducto() {
         String nombre        = etNombre.getText().toString().trim();
         double precio         = Double.parseDouble(etPrecio.getText().toString().trim());
         String categoria     = spinnerCategoria.getSelectedItem().toString();
@@ -91,6 +183,7 @@ public class AdminActivity extends AppCompatActivity {
         int proteina         = parseIntOrZero(etProteina.getText().toString().trim());
         int carbohidratos    = parseIntOrZero(etCarbohidratos.getText().toString().trim());
         int grasas             = parseIntOrZero(etGrasas.getText().toString().trim());
+        int stock             = parseIntOrZero(etStock.getText().toString().trim());
 
         Map<String, Object> producto = new HashMap<>();
         producto.put("nombre", nombre);
@@ -102,18 +195,9 @@ public class AdminActivity extends AppCompatActivity {
         producto.put("proteina", proteina);
         producto.put("carbohidratos", carbohidratos);
         producto.put("grasas", grasas);
+        producto.put("stock", stock);
 
-        db.collection("productos")
-                .add(producto)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(AdminActivity.this,
-                            "Producto guardado exitosamente", Toast.LENGTH_SHORT).show();
-                    limpiarCampos();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(AdminActivity.this,
-                            "Error al guardar el producto", Toast.LENGTH_SHORT).show();
-                });
+        return producto;
     }
 
     private int parseIntOrZero(String valor) {
@@ -135,6 +219,7 @@ public class AdminActivity extends AppCompatActivity {
         etProteina.setText("");
         etCarbohidratos.setText("");
         etGrasas.setText("");
+        etStock.setText("");
     }
 
     private boolean validarCampos() {

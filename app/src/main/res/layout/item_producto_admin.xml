@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="14dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_card_detail">
+
+    <ImageView
+        android:id="@+id/iv_imagen"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:background="#1E294D"
+        android:src="@android:drawable/ic_menu_gallery" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="12dp">
+
+        <TextView
+            android:id="@+id/tv_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tv_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoría"
+            android:textSize="11sp"
+            android:textColor="#4C6FFF"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/tv_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.00"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btn_editar"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_edit_nav"
+            android:background="@android:color/transparent"
+            android:contentDescription="Editar"
+            android:layout_marginBottom="6dp" />
+
+        <ImageButton
+            android:id="@+id/btn_eliminar"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@android:drawable/ic_menu_delete"
+            android:background="@android:color/transparent"
+            app:tint="#E53935"
+            android:contentDescription="Eliminar" />
+
+    </LinearLayout>
+
+</LinearLayout>

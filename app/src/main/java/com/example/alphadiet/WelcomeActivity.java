@@ -6,7 +6,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.android.gms.tasks.Task;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -18,6 +31,10 @@ public class WelcomeActivity extends AppCompatActivity {
     private TextView tvTerminos;
     private TextView tvPrivacidad;
 
+    private GoogleSignInClient googleSignInClient;
+    private FirebaseAuth firebaseAuth;
+    private ActivityResultLauncher<Intent> googleSignInLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +42,25 @@ public class WelcomeActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         setContentView(R.layout.activity_welcome);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .requestProfile()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        googleSignInLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    Intent data = result.getData();
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                    manejarResultadoGoogle(task);
+                }
+        );
+
         initViews();
         setupListeners();
     }
@@ -54,12 +90,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Google Sign-In
-            }
-        });
+        btnGoogle.setOnClickListener(v -> iniciarSesionConGoogle());
 
         btnInstagram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +119,33 @@ public class WelcomeActivity extends AppCompatActivity {
                 // TODO: abrir Política de Privacidad
             }
         });
+    }
+
+    private void iniciarSesionConGoogle() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        googleSignInLauncher.launch(signInIntent);
+    }
+
+    private void manejarResultadoGoogle(Task<GoogleSignInAccount> task) {
+        try {
+            GoogleSignInAccount account = task.getResult(ApiException.class);
+            autenticarConFirebase(account);
+        } catch (ApiException e) {
+            Toast.makeText(this, "No se pudo iniciar sesión con Google", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void autenticarConFirebase(GoogleSignInAccount account) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+
+        firebaseAuth.signInWithCredential(credential)
+                .addOnSuccessListener(authResult -> {
+                    Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                    finish();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+                );
     }
 }

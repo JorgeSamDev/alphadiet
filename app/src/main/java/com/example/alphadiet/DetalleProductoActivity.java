@@ -151,6 +151,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         }
 
         java.util.Map<String, Object> item = new java.util.HashMap<>();
+        item.put("productoId", productoActual.getId());
         item.put("nombre", productoActual.getNombre());
         item.put("precio", productoActual.getPrecio());
         item.put("cantidad", cantidad);

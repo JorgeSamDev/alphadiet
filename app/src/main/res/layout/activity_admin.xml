@@ -21,6 +21,17 @@
             android:textColor="#FFFFFF"
             android:layout_marginBottom="20dp" />
 
+        <Button
+            android:id="@+id/btn_ver_productos"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Ver todos los productos"
+            android:textColor="#4C6FFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_card_detail"
+            android:layout_marginBottom="20dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,6 +99,28 @@
             android:inputType="numberDecimal"
             android:singleLine="true"
             android:layout_marginBottom="14dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Existencias"
+            android:textSize="14sp"
+            android:textColor="#8A93B8"
+            android:layout_marginBottom="6dp" />
+
+        <EditText
+            android:id="@+id/et_stock"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Ej: 50"
+            android:background="@drawable/bg_search_bar"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#8A93B8"
+            android:inputType="number"
+            android:singleLine="true"
+            android:layout_marginBottom="14dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,6 +137,7 @@
             android:background="@drawable/bg_card_detail"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+
             android:layout_marginBottom="14dp" />
 
         <TextView
